@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: toy-robot
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: toy-robot
+  template:
+    metadata:
+      labels:
+        app: toy-robot
+    spec:
+      containers:
+      - name: toy-robot
+        image: zjhans/toyrobot:2.3.0
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: toy-robot-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: toy-robot
+  ports:
+  - port: 8080
+    targetPort: 8080
