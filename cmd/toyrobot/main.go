@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.comcast.com/zhanso101/robot-factory/pkg/robot"
+	"github.com/zjhans/robotfactory/pkg/robot"
 )
 
 // main defines the functions to handle web requests and starts the web server on port 8080.
